@@ -4,7 +4,20 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 # Author: Diego Gomez Mosquera
 trigger:
-- 'master'
+  - 'master'
 
 pool:
   vmImage: 'ubuntu-20.04'
+
+stages:
+- stage: Install_Java11
+  displayName: Install Java11
+  jobs:
+    - job: Install_Java11
+      displayName: Install_Java11
+      steps:
+        - task: JavaToolInstaller@0
+          inputs:
+            versionSpec: '11'
+            jdkArchitectureOption: 'x64'
+            jdkSourceOption: 'PreInstalled'
